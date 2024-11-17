@@ -47,6 +47,7 @@ The program simulates the LRU page replacement algorithm, which replaces the lea
    The project requires the following Python libraries:
 
    - `matplotlib`
+   - `pandas`
 
 2. **Running the Notebook**
    - Open the `main.ipynb` notebook in a Jupyter Notebook environment.
