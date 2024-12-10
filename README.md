@@ -4,41 +4,32 @@ Implementation of the Least Recently Used (LRU) page replacement algorithm in Py
 
 ## Features
 
-- **Simulates LRU Page Replacement**: The program simulates the Least Recently Used (LRU) page replacement algorithm to manage memory frames and handle page faults.
-- **User Input**: Prompts the user to input the number of frames (memory slots) and a sequence of page accesses (space-separated).
-- **Visualization**: Uses **matplotlib** to plot the page replacement process, showing the pages present in the frames at each time step.
-- **Page Fault Counting**: The program tracks and displays the total number of page faults during the simulation.
+- **LRU Page Replacement Simulation**: Simulates the behavior of the LRU algorithm when accessing a sequence of pages.
+- **Dynamic Input**: Allows the user to input the number of memory frames and the page reference string.
+- **Page Hit and Fault Tracking**: Keeps track of the number of page hits and faults during the simulation.
+- **Interactive Visualization**: Displays a step-by-step table of page accesses, with frames and the hit/fault status for each step.
+- **Metrics**: Calculates and prints the hit ratio and fault ratio after simulation.
 
-## Explanation of the Code
+## Code Explanation
 
-The program simulates the LRU page replacement algorithm, which replaces the least recently used page when a page needs to be loaded but no free space is available in memory.
+### LRUPageReplacement Class
 
-### Key Functions
+This class simulates the LRU page replacement algorithm. It has the following attributes and methods:
 
-1. **`lru_page_replacement(frames_count, page_sequence)`**:
+- **Attributes**:
 
-   - This function simulates the LRU algorithm by iterating through the sequence of page accesses.
-   - If a page is accessed that is **not in memory**, it is added to the frame, and a page fault is recorded. If the memory is full, the **least recently used** page (the one that was accessed the least recently) is removed.
-   - If the page is already in memory, it is moved to the most recently used position.
-   - It returns the total number of page faults and the history of the frames' states (to be used for plotting).
+  - `num_frames`: The number of memory frames available for storing pages.
+  - `frames`: A list that stores the pages currently in memory.
+  - `page_faults`: Counter for the number of page faults.
+  - `page_hits`: Counter for the number of page hits.
+  - `page_sequence`: The list of pages being accessed.
+  - `page_steps`: A list that tracks the state of memory frames and whether each access resulted in a hit or fault.
 
-2. **`visualize_lru(frames_count, page_sequence)`**:
-
-   - This function visualizes the LRU algorithm's behavior. It calls `lru_page_replacement` to simulate the page replacements and uses **matplotlib** to plot the frames over time.
-   - The plot shows the state of the memory at each time step, where the x-axis represents time (page accesses), and the y-axis shows the pages loaded in memory frames.
-
-3. **`main()`**:
-   - The main function that handles user input for the number of frames and page reference sequence.
-   - It then calls `visualize_lru` to display the simulation and generate the plot.
-
-### LRU Algorithm Workflow
-
-- When a page access occurs:
-
-  1. **Page Hit**: If the page is already in memory, it is moved to the most recently used position.
-  2. **Page Fault**: If the page is not in memory, it is added. If the memory is full, the **least recently used page** is evicted and replaced by the new page.
-
-  The algorithm continues this process for all page accesses in the given sequence.
+- **Methods**:
+  - `access_page(page)`: Simulates accessing a page, updating the state of memory frames, and recording hits and faults.
+  - `simulate(page_sequence)`: Simulates the page access sequence.
+  - `print_results()`: Prints statistics such as the total number of page hits, faults, and their ratios.
+  - `display_table()`: Creates and displays an interactive Plotly table showing the memory state after each page access.
 
 ## Running the Program
 
